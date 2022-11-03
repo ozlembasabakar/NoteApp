@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.noteapp.featurenote.data.datasource.NoteDatabase
 import com.example.noteapp.featurenote.data.repository.NoteRepositoryImpl
 import com.example.noteapp.featurenote.domain.repository.NoteRepository
+import com.example.noteapp.featurenote.domain.usecase.AddNote
 import com.example.noteapp.featurenote.domain.usecase.DeleteNote
 import com.example.noteapp.featurenote.domain.usecase.GetNotes
 import com.example.noteapp.featurenote.domain.usecase.NoteUseCases
@@ -20,9 +21,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNoteDatabase(app: Application): NoteDatabase {
+    fun provideNoteDatabase(application: Application): NoteDatabase {
         return Room.databaseBuilder(
-            app,
+            application,
             NoteDatabase::class.java,
             NoteDatabase.DATABASE_NAME
         ).build()
@@ -38,8 +39,9 @@ object AppModule {
     @Singleton
     fun provideNoteUseCases(noteRepository: NoteRepository): NoteUseCases {
         return NoteUseCases(
-            GetNotes(noteRepository),
-            DeleteNote(noteRepository)
+            getNotes = GetNotes(noteRepository),
+            deleteNote = DeleteNote(noteRepository),
+            addNote = AddNote(noteRepository)
         )
     }
 }
