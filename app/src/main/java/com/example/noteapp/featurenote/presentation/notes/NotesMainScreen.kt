@@ -13,13 +13,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.noteapp.featurenote.domain.util.NotesEvent
 import com.example.noteapp.featurenote.presentation.notes.components.NoteItem
 import com.example.noteapp.featurenote.presentation.notes.components.OrderSection
+import com.example.noteapp.featurenote.presentation.notes.components.SearchBar
 import com.example.noteapp.featurenote.presentation.util.Screen
 import kotlinx.coroutines.launch
 
@@ -54,16 +54,19 @@ fun NotesMainScreen(
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
+            Text(
+                text = "Your Notes",
+                style = MaterialTheme.typography.h4
+            )
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "Your Notes",
-                    style = MaterialTheme.typography.h4
-                )
+                SearchBar(hint = "Search") {
+                    notesViewModel.searchExerciseList(it)
+                }
                 IconButton(
                     onClick = {
                         notesViewModel.onEvent(NotesEvent.ToggleOrderSection)
