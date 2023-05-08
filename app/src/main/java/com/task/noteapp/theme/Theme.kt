@@ -14,6 +14,8 @@ private val DarkColorScheme = darkColorScheme(
     surface = CardBackgroundColorDark,
     onSurface = CardTitleColorDark,
     onPrimary = CardDescriptionColorDark,
+    primaryContainer = ButtonBackgroundColorDark,
+    onPrimaryContainer = ButtonIconColorDark
 
 )
 
@@ -22,6 +24,8 @@ private val LightColorScheme = lightColorScheme(
     surface = CardBackgroundColorLight,
     onSurface = CardTitleColorLight,
     onPrimary = CardDescriptionColorLight,
+    primaryContainer = ButtonBackgroundColorLight,
+    onPrimaryContainer = ButtonIconColorLight
 )
 
 @Composable
