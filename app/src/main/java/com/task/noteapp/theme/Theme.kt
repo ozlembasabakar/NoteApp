@@ -7,19 +7,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import com.example.myapplication.ui.theme.*
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    surface = CardBackgroundColorDark,
+    onSurface = CardTitleColorDark,
+    onPrimary = CardDescriptionColorDark,
+
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    surface = CardBackgroundColorLight,
+    onSurface = CardTitleColorLight,
+    onPrimary = CardDescriptionColorLight,
 )
 
 @Composable
