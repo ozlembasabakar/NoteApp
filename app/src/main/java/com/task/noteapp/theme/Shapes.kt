@@ -11,3 +11,8 @@ val Shapes = Shapes(
 val CardColumnBorderSize = 1.dp
 val CardTextColumnPadding = 8.dp
 const val CardDescriptionTextMaxLineCount = 2
+
+val ListContentPaddingValues = 8.dp
+val ListVerticalItemSpacing = 8.dp
+val ListHorizontalArrangementSpacing = 8.dp
+const val ListItemCountPerColumn = 2

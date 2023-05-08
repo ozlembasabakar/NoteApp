@@ -2,6 +2,9 @@ package com.task.noteapp.theme
 
 import androidx.compose.ui.graphics.Color
 
+val BackgroundColorLight = Color.White
+val BackgroundColorDark = Color.Black
+
 val CardBackgroundColorLight = Color.White
 val CardBackgroundColorDark = Color.Black
 val CardTitleColorLight = Color(0xFF2F2525)

@@ -10,6 +10,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorScheme = darkColorScheme(
+    background = BackgroundColorDark,
     surface = CardBackgroundColorDark,
     onSurface = CardTitleColorDark,
     onPrimary = CardDescriptionColorDark,
@@ -17,6 +18,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
+    background = BackgroundColorLight,
     surface = CardBackgroundColorLight,
     onSurface = CardTitleColorLight,
     onPrimary = CardDescriptionColorLight,
