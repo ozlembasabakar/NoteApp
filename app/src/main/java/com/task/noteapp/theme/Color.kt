@@ -16,6 +16,13 @@ val CardColumnBorderColor = Color(0xFF887575)
 
 val ButtonBackgroundColorLight = Color(0xFF2F2525)
 val ButtonIconColorLight = Color(0xFF998888)
-
 val ButtonBackgroundColorDark = Color(0xFF998888)
 val ButtonIconColorDark = Color(0xFF2F2525)
+
+val AddOrEditTextBackgroundColorLight = Color.White
+val AddOrEditPlaceholderColorLight = Color.LightGray
+val AddOrEditTextSelectionColorLight = Color.LightGray
+
+val AddOrEditTextBackgroundColorDark = Color.Black
+val AddOrEditPlaceholderColorDark = Color.LightGray
+val AddOrEditTextSelectionColorDark = Color.LightGray
