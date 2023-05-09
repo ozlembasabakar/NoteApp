@@ -17,12 +17,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import com.task.noteapp.R
+import com.task.noteapp.data.model.Note
 import com.task.noteapp.theme.*
 
 @Composable
 fun Card(
     modifier: Modifier,
-    cardModel: CardModel,
+    note: Note,
 ) {
     Column(
         modifier = modifier
@@ -36,11 +37,11 @@ fun Card(
             .background(MaterialTheme.colorScheme.surface)
     ) {
         AsyncImage(
-            model = cardModel.imageUrl,
+            model = note.imageUrl,
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(shape = Shapes.small),
-            contentDescription = cardModel.title,
+            contentDescription = note.title,
             contentScale = ContentScale.Crop,
             placeholder = painterResource(id = R.drawable.placeholder)
         )
@@ -49,12 +50,12 @@ fun Card(
             horizontalAlignment = Alignment.Start
         ) {
             Text(
-                text = cardModel.title,
+                text = note.title,
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleSmall
             )
             Text(
-                text = cardModel.description,
+                text = note.description,
                 color = MaterialTheme.colorScheme.onPrimary,
                 style = MaterialTheme.typography.bodySmall,
                 maxLines = CardDescriptionTextMaxLineCount
@@ -66,29 +67,23 @@ fun Card(
 @Composable
 fun NoteCard(
     modifier: Modifier,
-    cardModel: CardModel,
+    note: Note,
 ) {
-    Card(cardModel = cardModel, modifier = modifier)
+    Card(note = note, modifier = modifier)
 }
-
-data class CardModel(
-    val title: String,
-    val description: String,
-    val imageUrl: String = "",
-)
 
 @Preview(name = "LightMode")
 @Preview(name = "DarkMode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun PreviewCard() {
     NoteAppTheme {
-        val model = CardModel(
+        val note = Note(
             title = "Title",
             description = "Description",
         )
         Card(
             modifier = Modifier,
-            cardModel = model
+            note = note
         )
     }
 }

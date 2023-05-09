@@ -2,19 +2,20 @@ package com.task.noteapp.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.task.noteapp.data.model.Note
 import com.task.noteapp.theme.*
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun List(
-    cardModel: CardModel,
+    note: List<Note>,
     modifier: Modifier,
 ) {
     LazyVerticalStaggeredGrid(
@@ -23,9 +24,9 @@ fun List(
         horizontalArrangement = Arrangement.spacedBy(ListHorizontalArrangementSpacing),
         columns = StaggeredGridCells.Fixed(ListItemCountPerColumn),
         content = {
-            items(15) {
+            items(note) {
                 NoteCard(
-                    cardModel = cardModel,
+                    note = it,
                     modifier = modifier
                 )
             }
@@ -35,11 +36,11 @@ fun List(
 
 @Composable
 fun NotesList(
-    cardModel: CardModel,
+    note: List<Note>,
     modifier: Modifier,
 ) {
     List(
-        cardModel = cardModel,
+        note = note,
         modifier = modifier
     )
 }
@@ -49,13 +50,13 @@ fun NotesList(
 @Composable
 fun PreviewNotesList() {
     NoteAppTheme {
-        val model = CardModel(
+        val model = Note(
             title = "Title",
             description = "Description",
         )
-        NotesList(
+        /*NotesList(
             modifier = Modifier,
-            cardModel = model
-        )
+            note = model
+        )*/
     }
 }
