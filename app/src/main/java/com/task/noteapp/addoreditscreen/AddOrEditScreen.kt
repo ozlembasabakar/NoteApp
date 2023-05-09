@@ -15,6 +15,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -27,10 +28,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.task.noteapp.R
-import com.task.noteapp.Screen
 import com.task.noteapp.components.TextField
 import com.task.noteapp.theme.AddOrEditScreenColumnVerticalPadding
 import com.task.noteapp.theme.AddOrEditScreenIconPadding
@@ -39,21 +38,13 @@ import com.task.noteapp.theme.Shapes
 
 @Composable
 fun AddOrEditScreen(
-    navController: NavController,
+    addOrEditScreenModel: AddOrEditScreenModel,
+    addNoteEvent: () -> Unit,
     modifier: Modifier,
 ) {
 
     val focusManager = LocalFocusManager.current
 
-    var title = remember {
-        mutableStateOf("")
-    }
-    var imageUrl = remember {
-        mutableStateOf("")
-    }
-    var note = remember {
-        mutableStateOf("")
-    }
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -71,14 +62,14 @@ fun AddOrEditScreen(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = rememberRipple(bounded = true),
                     onClick = {
-                        navController.navigate(Screen.NotesScreen.route)
+                        addNoteEvent()
                     }
                 ),
             tint = MaterialTheme.colorScheme.onPrimaryContainer,
         )
 
         TextField(
-            value = title,
+            value = addOrEditScreenModel.title,
             modifier = Modifier.fillMaxWidth(),
             textStyle = MaterialTheme.typography.headlineSmall,
             placeholder = {
@@ -100,7 +91,7 @@ fun AddOrEditScreen(
         )
 
         TextField(
-            value = imageUrl,
+            value = addOrEditScreenModel.imageUrl,
             modifier = Modifier
                 .fillMaxWidth(),
             placeholder = {
@@ -122,7 +113,7 @@ fun AddOrEditScreen(
         )
 
         TextField(
-            value = note,
+            value = addOrEditScreenModel.note,
             modifier = Modifier.fillMaxSize(),
             placeholder = {
                 Text(
@@ -141,12 +132,18 @@ fun AddOrEditScreen(
     }
 }
 
+data class AddOrEditScreenModel(
+    val title: MutableState<String> = mutableStateOf(""),
+    val imageUrl: MutableState<String> = mutableStateOf(""),
+    val note: MutableState<String> = mutableStateOf(""),
+)
+
 @Preview(name = "LightMode", showSystemUi = true)
 @Preview(name = "DarkMode", showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun PreviewAddOrEditScreen() {
     NoteAppTheme {
         val navController = rememberNavController()
-        AddOrEditScreen(navController = navController, modifier = Modifier)
+        //AddOrEditScreen(navController = navController, modifier = Modifier)
     }
 }

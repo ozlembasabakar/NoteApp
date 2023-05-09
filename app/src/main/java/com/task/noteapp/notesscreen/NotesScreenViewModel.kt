@@ -13,8 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NotesScreenViewModel @Inject constructor(
-    private val noteRepository: NoteRepository
-): ViewModel() {
+    private val noteRepository: NoteRepository,
+) : ViewModel() {
 
     private val _notes = MutableStateFlow(NotesScreenViewState())
     val notes = _notes.asStateFlow()
@@ -25,16 +25,15 @@ class NotesScreenViewModel @Inject constructor(
 
     private fun getAllNotes() {
         viewModelScope.launch {
-            _notes.update {
-                it.copy(
-                    notes = noteRepository.getAllNotes()
-                )
+            noteRepository.getAllNotes().collect { notes ->
+                _notes.update { viewState ->
+                    viewState.copy(notes = notes)
+                }
             }
         }
     }
-
 }
 
 data class NotesScreenViewState(
-    val notes: List<Note> = emptyList()
+    val notes: List<Note> = emptyList(),
 )
