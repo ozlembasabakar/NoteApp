@@ -20,15 +20,21 @@ class AddOrEditScreenViewModel @Inject constructor(
 
     fun addNote() {
         viewModelScope.launch {
-            noteRepository.addNewNote(
-                Note(
-                    title = addOrEditScreenModel.title.value,
-                    imageUrl = addOrEditScreenModel.imageUrl.value,
-                    description = addOrEditScreenModel.note.value,
+            if (validate()) {
+                noteRepository.addNewNote(
+                    Note(
+                        title = addOrEditScreenModel.title.value,
+                        imageUrl = addOrEditScreenModel.imageUrl.value,
+                        description = addOrEditScreenModel.note.value,
+                    )
                 )
-            )
+            }
             addOrEditAction.emit(AddOrEditAction.NavigateBack)
         }
+    }
+
+    private fun validate(): Boolean {
+        return addOrEditScreenModel.title.value.isNotBlank() || addOrEditScreenModel.imageUrl.value.isNotBlank() || addOrEditScreenModel.note.value.isNotBlank()
     }
 }
 
