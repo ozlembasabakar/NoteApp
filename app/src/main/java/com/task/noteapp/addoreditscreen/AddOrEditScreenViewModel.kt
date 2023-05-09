@@ -27,7 +27,6 @@ class AddOrEditScreenViewModel @Inject constructor(
                     description = addOrEditScreenModel.note.value,
                 )
             )
-
             addOrEditAction.emit(AddOrEditAction.NavigateBack)
         }
     }

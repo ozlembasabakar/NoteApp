@@ -8,10 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.task.noteapp.RemoteDatasource
-import com.task.noteapp.Screen
 import com.task.noteapp.components.Button
 import com.task.noteapp.components.NotesList
 import com.task.noteapp.data.model.Note
@@ -23,7 +20,7 @@ import com.task.noteapp.theme.NoteAppTheme
 @Composable
 fun NotesScreen(
     note: List<Note>,
-    navController: NavController,
+    onAddNoteClick: () -> Unit,
     modifier: Modifier,
 ) {
     Scaffold(
@@ -33,9 +30,8 @@ fun NotesScreen(
         floatingActionButton = {
             Button(
                 onClick = {
-                    navController.navigate(Screen.AddOrEditScreen.route)
                     Log.d("ozlem was here", "floating action button pressed")
-
+                    onAddNoteClick()
                 }
             )
         },
@@ -58,11 +54,9 @@ fun PreviewNotesScreen() {
 
         val model = RemoteDatasource().datasource.value
 
-        val navController = rememberNavController()
-
         NotesScreen(
             note = model,
-            navController = navController,
+            onAddNoteClick = {},
             modifier = Modifier
         )
     }

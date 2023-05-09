@@ -36,9 +36,21 @@ fun NoteAppNavHost() {
 
             Log.d("ozlem was here", notesScreenViewState.notes.last().title)
 
+            val lifecycle = LocalLifecycleOwner.current.lifecycle
+
+            LaunchedEffect(Unit) {
+                lifecycle.repeatOnLifecycle(state = Lifecycle.State.STARTED) {
+                    notesScreenViewModel.notesAction.collectLatest {
+                        navController.navigate(Screen.AddOrEditScreen.route)
+                    }
+                }
+            }
+
             NotesScreen(
                 note = notesScreenViewState.notes,
-                navController = navController,
+                onAddNoteClick = {
+                    notesScreenViewModel.openAddNewNoteScreen()
+                },
                 modifier = Modifier
             )
         }
