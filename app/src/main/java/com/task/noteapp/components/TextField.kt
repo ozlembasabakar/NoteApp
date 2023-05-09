@@ -58,9 +58,11 @@ fun TextField(
 @Composable
 fun PreviewTextField() {
     NoteAppTheme {
+
         val value = remember {
             mutableStateOf("")
         }
+
         TextField(
             value = value,
             modifier = Modifier.fillMaxWidth(),

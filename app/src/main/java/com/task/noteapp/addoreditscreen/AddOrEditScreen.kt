@@ -1,5 +1,6 @@
 package com.task.noteapp.addoreditscreen
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,7 +29,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
 import com.task.noteapp.R
 import com.task.noteapp.components.TextField
 import com.task.noteapp.theme.AddOrEditScreenColumnVerticalPadding
@@ -138,12 +138,23 @@ data class AddOrEditScreenModel(
     val note: MutableState<String> = mutableStateOf(""),
 )
 
+@SuppressLint("UnrememberedMutableState")
 @Preview(name = "LightMode", showSystemUi = true)
 @Preview(name = "DarkMode", showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun PreviewAddOrEditScreen() {
     NoteAppTheme {
-        val navController = rememberNavController()
-        //AddOrEditScreen(navController = navController, modifier = Modifier)
+
+        val addOrEditScreenModel = AddOrEditScreenModel(
+            title = mutableStateOf("Title"),
+            imageUrl = mutableStateOf("Image Url"),
+            note = mutableStateOf("Note"),
+        )
+
+        AddOrEditScreen(
+            addOrEditScreenModel = addOrEditScreenModel,
+            addNoteEvent = {},
+            modifier = Modifier
+        )
     }
 }

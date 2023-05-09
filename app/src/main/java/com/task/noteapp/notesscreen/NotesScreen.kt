@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.task.noteapp.RemoteDatasource
 import com.task.noteapp.Screen
 import com.task.noteapp.components.Button
 import com.task.noteapp.components.NotesList
@@ -48,20 +49,21 @@ fun NotesScreen(
     )
 }
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Preview(name = "LightMode", showSystemUi = true)
 @Preview(name = "DarkMode", uiMode = Configuration.UI_MODE_NIGHT_YES, showSystemUi = true)
 @Composable
 fun PreviewNotesScreen() {
     NoteAppTheme {
-        val model = Note(
-            title = "Title",
-            description = "Description",
-        )
+
+        val model = RemoteDatasource().datasource.value
+
         val navController = rememberNavController()
-        /*NotesScreen(
+
+        NotesScreen(
             note = model,
             navController = navController,
             modifier = Modifier
-        )*/
+        )
     }
 }

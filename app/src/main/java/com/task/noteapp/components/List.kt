@@ -1,5 +1,6 @@
 package com.task.noteapp.components
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
@@ -9,6 +10,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.task.noteapp.RemoteDatasource
 import com.task.noteapp.data.model.Note
 import com.task.noteapp.theme.*
 
@@ -45,18 +47,18 @@ fun NotesList(
     )
 }
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Preview(name = "LightMode", showSystemUi = true)
 @Preview(name = "DarkMode", uiMode = Configuration.UI_MODE_NIGHT_YES, showSystemUi = true)
 @Composable
 fun PreviewNotesList() {
     NoteAppTheme {
-        val model = Note(
-            title = "Title",
-            description = "Description",
-        )
-        /*NotesList(
+
+        val model = RemoteDatasource().datasource.value
+
+        NotesList(
             modifier = Modifier,
             note = model
-        )*/
+        )
     }
 }
