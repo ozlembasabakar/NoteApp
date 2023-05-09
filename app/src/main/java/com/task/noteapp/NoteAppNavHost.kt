@@ -1,18 +1,24 @@
 package com.task.noteapp
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.task.noteapp.addoreditscreen.AddOrEditScreen
-import com.task.noteapp.components.CardModel
 import com.task.noteapp.notesscreen.NotesScreen
+import com.task.noteapp.notesscreen.NotesScreenViewModel
 
 @Composable
 fun NoteAppNavHost() {
 
     val navController = rememberNavController()
+
+    val notesScreenViewModel: NotesScreenViewModel = hiltViewModel()
+    val notesScreenViewState by notesScreenViewModel.notes.collectAsState()
 
     NavHost(
         modifier = Modifier,
@@ -21,11 +27,7 @@ fun NoteAppNavHost() {
     ) {
         composable(Screen.NotesScreen.route) {
             NotesScreen(
-                cardModel = CardModel(
-                    title = "Title",
-                    description = "Description",
-                    imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX_myk5jX77-Ljy3cvcOWEVAcS_QuVL3DTXKYUmpz8hYCnzWj7j6tbd8almtUsQSxSXe0&usqp=CAU"
-                ),
+                note = notesScreenViewState.notes,
                 navController = navController,
                 modifier = Modifier
             )
