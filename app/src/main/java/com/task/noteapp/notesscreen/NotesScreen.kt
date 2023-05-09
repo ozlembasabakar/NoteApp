@@ -8,6 +8,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.task.noteapp.Screen
 import com.task.noteapp.components.Button
 import com.task.noteapp.components.CardModel
 import com.task.noteapp.components.NotesList
@@ -19,6 +22,7 @@ import com.task.noteapp.theme.NoteAppTheme
 @Composable
 fun NotesScreen(
     cardModel: CardModel,
+    navController: NavController,
     modifier: Modifier,
 ) {
     Scaffold(
@@ -28,7 +32,9 @@ fun NotesScreen(
         floatingActionButton = {
             Button(
                 onClick = {
+                    navController.navigate(Screen.AddOrEditScreen.route)
                     Log.d("ozlem was here", "floating action button pressed")
+
                 }
             )
         },
@@ -52,8 +58,10 @@ fun PreviewNotesScreen() {
             title = "Title",
             description = "Description",
         )
+        val navController = rememberNavController()
         NotesScreen(
             cardModel = model,
+            navController = navController,
             modifier = Modifier
         )
     }

@@ -2,12 +2,15 @@ package com.task.noteapp.addoreditscreen
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
@@ -23,14 +27,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.task.noteapp.R
+import com.task.noteapp.Screen
 import com.task.noteapp.components.TextField
 import com.task.noteapp.theme.AddOrEditScreenColumnVerticalPadding
 import com.task.noteapp.theme.AddOrEditScreenIconPadding
 import com.task.noteapp.theme.NoteAppTheme
+import com.task.noteapp.theme.Shapes
 
 @Composable
 fun AddOrEditScreen(
+    navController: NavController,
     modifier: Modifier,
 ) {
 
@@ -55,7 +64,16 @@ fun AddOrEditScreen(
         Icon(
             painter = painterResource(id = R.drawable.back_icon),
             contentDescription = R.drawable.back_icon.toString(),
-            modifier = Modifier.padding(start = AddOrEditScreenIconPadding),
+            modifier = Modifier
+                .padding(start = AddOrEditScreenIconPadding)
+                .clip(Shapes.small)
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple(bounded = true),
+                    onClick = {
+                        navController.navigate(Screen.NotesScreen.route)
+                    }
+                ),
             tint = MaterialTheme.colorScheme.onPrimaryContainer,
         )
 
@@ -128,6 +146,7 @@ fun AddOrEditScreen(
 @Composable
 fun PreviewAddOrEditScreen() {
     NoteAppTheme {
-        AddOrEditScreen(modifier = Modifier)
+        val navController = rememberNavController()
+        AddOrEditScreen(navController = navController, modifier = Modifier)
     }
 }
