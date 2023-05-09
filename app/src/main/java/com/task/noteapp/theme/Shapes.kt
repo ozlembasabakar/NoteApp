@@ -16,3 +16,6 @@ val ListContentPaddingValues = 8.dp
 val ListVerticalItemSpacing = 8.dp
 val ListHorizontalArrangementSpacing = 8.dp
 const val ListItemCountPerColumn = 2
+
+val AddOrEditScreenColumnVerticalPadding = 16.dp
+val AddOrEditScreenIconPadding = 12.dp
