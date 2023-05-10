@@ -18,7 +18,8 @@ import com.task.noteapp.theme.*
 @Composable
 fun List(
     note: List<Note>,
-    modifier: Modifier,
+    onDeleteNoteClick: (Note) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     LazyVerticalStaggeredGrid(
         contentPadding = PaddingValues(ListContentPaddingValues),
@@ -26,24 +27,27 @@ fun List(
         horizontalArrangement = Arrangement.spacedBy(ListHorizontalArrangementSpacing),
         columns = StaggeredGridCells.Fixed(ListItemCountPerColumn),
         content = {
-            items(note) {
+            items(note) { noteList ->
                 NoteCard(
-                    note = it,
-                    modifier = modifier
+                    note = noteList,
+                    onDeleteNoteClick = { note ->
+                        onDeleteNoteClick(note)
+                    }
                 )
             }
-        }
+        },
+        modifier = modifier.fillMaxSize()
     )
 }
 
 @Composable
 fun NotesList(
     note: List<Note>,
-    modifier: Modifier,
+    onDeleteNoteClick: (Note) -> Unit,
 ) {
     List(
         note = note,
-        modifier = modifier
+        onDeleteNoteClick = onDeleteNoteClick
     )
 }
 
@@ -57,8 +61,8 @@ fun PreviewNotesList() {
         val model = RemoteDatasource().datasource.value
 
         NotesList(
-            modifier = Modifier,
-            note = model
+            note = model,
+            onDeleteNoteClick = {}
         )
     }
 }

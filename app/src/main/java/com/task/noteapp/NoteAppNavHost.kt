@@ -34,7 +34,7 @@ fun NoteAppNavHost() {
     ) {
         composable(Screen.NotesScreen.route) {
 
-            Log.d("ozlem was here", notesScreenViewState.notes.last().title)
+            Log.d("ozlem was here", notesScreenViewState.notes.toString())
 
             val lifecycle = LocalLifecycleOwner.current.lifecycle
 
@@ -51,7 +51,9 @@ fun NoteAppNavHost() {
                 onAddNoteClick = {
                     notesScreenViewModel.openAddNewNoteScreen()
                 },
-                modifier = Modifier
+                onDeleteNoteClick = {
+                    notesScreenViewModel.deleteNote(it)
+                }
             )
         }
         composable(Screen.AddOrEditScreen.route) {
@@ -68,7 +70,7 @@ fun NoteAppNavHost() {
             }
 
             AddOrEditScreen(
-                addOrEditScreenModel = addOrEditScreenViewModel.addOrEditScreenModel,
+                addOrEditModel = addOrEditScreenViewModel.addOrEditModel,
                 addNoteEvent = {
                     addOrEditScreenViewModel.addNote()
                 },

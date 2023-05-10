@@ -16,7 +16,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -31,6 +30,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.task.noteapp.R
 import com.task.noteapp.components.TextField
+import com.task.noteapp.data.model.AddOrEditModel
 import com.task.noteapp.theme.AddOrEditScreenColumnVerticalPadding
 import com.task.noteapp.theme.AddOrEditScreenIconPadding
 import com.task.noteapp.theme.NoteAppTheme
@@ -38,7 +38,7 @@ import com.task.noteapp.theme.Shapes
 
 @Composable
 fun AddOrEditScreen(
-    addOrEditScreenModel: AddOrEditScreenModel,
+    addOrEditModel: AddOrEditModel,
     addNoteEvent: () -> Unit,
     modifier: Modifier,
 ) {
@@ -69,7 +69,7 @@ fun AddOrEditScreen(
         )
 
         TextField(
-            value = addOrEditScreenModel.title,
+            value = addOrEditModel.title,
             modifier = Modifier.fillMaxWidth(),
             textStyle = MaterialTheme.typography.headlineSmall,
             placeholder = {
@@ -91,7 +91,7 @@ fun AddOrEditScreen(
         )
 
         TextField(
-            value = addOrEditScreenModel.imageUrl,
+            value = addOrEditModel.imageUrl,
             modifier = Modifier
                 .fillMaxWidth(),
             placeholder = {
@@ -113,7 +113,7 @@ fun AddOrEditScreen(
         )
 
         TextField(
-            value = addOrEditScreenModel.note,
+            value = addOrEditModel.note,
             modifier = Modifier.fillMaxSize(),
             placeholder = {
                 Text(
@@ -132,12 +132,6 @@ fun AddOrEditScreen(
     }
 }
 
-data class AddOrEditScreenModel(
-    val title: MutableState<String> = mutableStateOf(""),
-    val imageUrl: MutableState<String> = mutableStateOf(""),
-    val note: MutableState<String> = mutableStateOf(""),
-)
-
 @SuppressLint("UnrememberedMutableState")
 @Preview(name = "LightMode", showSystemUi = true)
 @Preview(name = "DarkMode", showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
@@ -145,14 +139,14 @@ data class AddOrEditScreenModel(
 fun PreviewAddOrEditScreen() {
     NoteAppTheme {
 
-        val addOrEditScreenModel = AddOrEditScreenModel(
+        val addOrEditModel = AddOrEditModel(
             title = mutableStateOf("Title"),
             imageUrl = mutableStateOf("Image Url"),
             note = mutableStateOf("Note"),
         )
 
         AddOrEditScreen(
-            addOrEditScreenModel = addOrEditScreenModel,
+            addOrEditModel = addOrEditModel,
             addNoteEvent = {},
             modifier = Modifier
         )

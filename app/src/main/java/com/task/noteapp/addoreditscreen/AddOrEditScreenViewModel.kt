@@ -3,6 +3,7 @@ package com.task.noteapp.addoreditscreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.task.noteapp.data.NoteRepository
+import com.task.noteapp.data.model.AddOrEditModel
 import com.task.noteapp.data.model.Note
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -14,7 +15,7 @@ class AddOrEditScreenViewModel @Inject constructor(
     private val noteRepository: NoteRepository,
 ) : ViewModel() {
 
-    val addOrEditScreenModel = AddOrEditScreenModel()
+    val addOrEditModel = AddOrEditModel()
 
     val addOrEditAction = MutableSharedFlow<AddOrEditAction>()
 
@@ -23,9 +24,9 @@ class AddOrEditScreenViewModel @Inject constructor(
             if (validate()) {
                 noteRepository.addNewNote(
                     Note(
-                        title = addOrEditScreenModel.title.value,
-                        imageUrl = addOrEditScreenModel.imageUrl.value,
-                        description = addOrEditScreenModel.note.value,
+                        title = addOrEditModel.title.value,
+                        imageUrl = addOrEditModel.imageUrl.value,
+                        description = addOrEditModel.note.value,
                     )
                 )
             }
@@ -34,7 +35,7 @@ class AddOrEditScreenViewModel @Inject constructor(
     }
 
     private fun validate(): Boolean {
-        return addOrEditScreenModel.title.value.isNotBlank() || addOrEditScreenModel.imageUrl.value.isNotBlank() || addOrEditScreenModel.note.value.isNotBlank()
+        return addOrEditModel.title.value.isNotBlank() || addOrEditModel.imageUrl.value.isNotBlank() || addOrEditModel.note.value.isNotBlank()
     }
 }
 

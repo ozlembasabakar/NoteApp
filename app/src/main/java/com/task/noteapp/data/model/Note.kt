@@ -1,9 +1,13 @@
 package com.task.noteapp.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "notes")
 data class Note(
-    val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String = "",
     val description: String = "",
     val imageUrl: String = "",
-    val timestamp: Long = 0
+    val timestamp: Long = 0,
 )

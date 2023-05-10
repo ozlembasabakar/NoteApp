@@ -36,6 +36,12 @@ class NotesScreenViewModel @Inject constructor(
         }
     }
 
+    fun deleteNote(note: Note) {
+        viewModelScope.launch {
+            noteRepository.deleteNote(note)
+        }
+    }
+
     fun openAddNewNoteScreen() {
         viewModelScope.launch {
             notesAction.emit(NotesAction.OpenAddNewNoteScreen)

@@ -8,6 +8,8 @@ val Shapes = Shapes(
     small = RoundedCornerShape(12.dp),
 )
 
+val CardIconPadding = 4.dp
+
 val CardColumnBorderSize = 1.dp
 val CardTextColumnPadding = 8.dp
 const val CardDescriptionTextMaxLineCount = 2

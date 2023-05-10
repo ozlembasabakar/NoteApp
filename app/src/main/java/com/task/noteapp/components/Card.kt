@@ -3,9 +3,14 @@ package com.task.noteapp.components
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,8 +27,9 @@ import com.task.noteapp.theme.*
 
 @Composable
 fun Card(
-    modifier: Modifier,
     note: Note,
+    onDeleteNoteClick: (Note) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
@@ -34,7 +40,8 @@ fun Card(
                 color = CardColumnBorderColor,
                 shape = Shapes.small
             )
-            .background(MaterialTheme.colorScheme.surface)
+            .background(MaterialTheme.colorScheme.surface),
+        horizontalAlignment = Alignment.End
     ) {
         AsyncImage(
             model = note.imageUrl,
@@ -46,7 +53,9 @@ fun Card(
             placeholder = painterResource(id = R.drawable.placeholder)
         )
         Column(
-            modifier = Modifier.padding(CardTextColumnPadding),
+            modifier = Modifier
+                .padding(CardTextColumnPadding)
+                .fillMaxSize(),
             horizontalAlignment = Alignment.Start
         ) {
             Text(
@@ -61,15 +70,26 @@ fun Card(
                 maxLines = CardDescriptionTextMaxLineCount
             )
         }
+        Icon(
+            Icons.Default.Delete,
+            contentDescription = Icons.Filled.Delete.name,
+            modifier = Modifier
+                .padding(CardIconPadding)
+                .clickable(
+                    onClick = {
+                        onDeleteNoteClick(note)
+                    }
+                )
+        )
     }
 }
 
 @Composable
 fun NoteCard(
-    modifier: Modifier,
     note: Note,
+    onDeleteNoteClick: (Note) -> Unit,
 ) {
-    Card(note = note, modifier = modifier)
+    Card(note = note, onDeleteNoteClick = onDeleteNoteClick)
 }
 
 @Preview(name = "LightMode")
@@ -82,8 +102,8 @@ fun PreviewCard() {
             description = "Description",
         )
         Card(
-            modifier = Modifier,
-            note = note
+            note = note,
+            onDeleteNoteClick = {}
         )
     }
 }
