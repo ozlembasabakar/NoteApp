@@ -9,5 +9,6 @@ data class Note(
     val title: String = "",
     val description: String = "",
     val imageUrl: String = "",
-    val timestamp: Long = 0,
+    val date: String = "",
+    val isEdited: Boolean = false
 )

@@ -5,10 +5,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ripple.rememberRipple
@@ -27,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.task.noteapp.R
 import com.task.noteapp.components.TextField
@@ -50,7 +48,8 @@ fun AddOrEditScreen(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.surface)
             .padding(vertical = AddOrEditScreenColumnVerticalPadding),
-        horizontalAlignment = Alignment.Start
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.spacedBy(AddOrEditScreenColumnVerticalPadding)
     ) {
         Icon(
             painter = painterResource(id = R.drawable.back_icon),
@@ -70,7 +69,8 @@ fun AddOrEditScreen(
 
         TextField(
             value = addOrEditModel.title,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth(),
             textStyle = MaterialTheme.typography.headlineSmall,
             placeholder = {
                 Text(
@@ -114,7 +114,9 @@ fun AddOrEditScreen(
 
         TextField(
             value = addOrEditModel.note,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
             placeholder = {
                 Text(
                     text = stringResource(R.string.note),
@@ -128,6 +130,13 @@ fun AddOrEditScreen(
             keyboardActions = KeyboardActions(
                 onNext = { focusManager.clearFocus() }
             ),
+        )
+        Text(
+            text = stringResource(id = R.string.edited) + " " + addOrEditModel.date.value,
+            modifier = Modifier
+                .fillMaxWidth(),
+            style = MaterialTheme.typography.displaySmall,
+            textAlign = TextAlign.Center
         )
     }
 }

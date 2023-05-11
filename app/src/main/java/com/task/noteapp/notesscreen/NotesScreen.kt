@@ -3,9 +3,7 @@ package com.task.noteapp.notesscreen
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.util.Log
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,7 +12,6 @@ import com.task.noteapp.RemoteDatasource
 import com.task.noteapp.components.Button
 import com.task.noteapp.components.NotesList
 import com.task.noteapp.data.model.Note
-import com.task.noteapp.theme.ListVerticalItemSpacing
 import com.task.noteapp.theme.NoteAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,7 +42,6 @@ fun NotesScreen(
                 onDeleteNoteClick = onDeleteNoteClick,
                 onOpenNotesDetailClick = onOpenNotesDetailClick
             )
-            Spacer(modifier = Modifier.height(ListVerticalItemSpacing))
         }
     )
 }
