@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -47,7 +48,8 @@ fun AddOrEditScreen(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.surface)
-            .padding(vertical = AddOrEditScreenColumnVerticalPadding),
+            .padding(vertical = AddOrEditScreenColumnVerticalPadding)
+            .testTag("AddOrEditScreen"),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.spacedBy(AddOrEditScreenColumnVerticalPadding)
     ) {
@@ -63,14 +65,16 @@ fun AddOrEditScreen(
                     onClick = {
                         addNoteEvent()
                     }
-                ),
+                )
+                .testTag("BackButton"),
             tint = MaterialTheme.colorScheme.onPrimaryContainer,
         )
 
         TextField(
             value = addOrEditModel.title,
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .testTag("Title"),
             textStyle = MaterialTheme.typography.headlineSmall,
             placeholder = {
                 Text(

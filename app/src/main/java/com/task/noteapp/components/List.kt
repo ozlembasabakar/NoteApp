@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import com.task.noteapp.RemoteDatasource
 import com.task.noteapp.data.model.Note
@@ -40,7 +41,9 @@ fun List(
                 )
             }
         },
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
+            .fillMaxSize()
+            .testTag("List")
     )
 }
 
