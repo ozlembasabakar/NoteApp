@@ -13,6 +13,10 @@ class NoteLocalDatasource @Inject constructor(
         return noteDao.getAllNotes()
     }
 
+    suspend fun getNoteById(id: Int): Note {
+        return noteDao.getNoteById(id)
+    }
+
     suspend fun addNewNote(note: Note) {
         noteDao.addNewNote(note)
     }

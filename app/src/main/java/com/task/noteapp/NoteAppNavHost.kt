@@ -10,11 +10,14 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.task.noteapp.addoreditscreen.AddOrEditScreen
 import com.task.noteapp.addoreditscreen.AddOrEditScreenViewModel
+import com.task.noteapp.notesscreen.NotesAction
 import com.task.noteapp.notesscreen.NotesScreen
 import com.task.noteapp.notesscreen.NotesScreenViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -40,8 +43,11 @@ fun NoteAppNavHost() {
 
             LaunchedEffect(Unit) {
                 lifecycle.repeatOnLifecycle(state = Lifecycle.State.STARTED) {
-                    notesScreenViewModel.notesAction.collectLatest {
-                        navController.navigate(Screen.AddOrEditScreen.route)
+                    notesScreenViewModel.notesAction.collectLatest { notesAction ->
+                        when (notesAction) {
+                            NotesAction.OpenAddNewNoteScreen -> navController.navigate(Screen.AddOrEditScreen.route + "?id=0")
+                            is NotesAction.OpenNoteDetail -> navController.navigate(Screen.AddOrEditScreen.route + "?id=${notesAction.id}")
+                        }
                     }
                 }
             }
@@ -53,10 +59,23 @@ fun NoteAppNavHost() {
                 },
                 onDeleteNoteClick = {
                     notesScreenViewModel.deleteNote(it)
+                },
+                onOpenNotesDetailClick = { note ->
+                    //notesScreenViewModel.getNoteById(it.id)
+                    notesScreenViewModel.openNoteDetail(note)
                 }
             )
         }
-        composable(Screen.AddOrEditScreen.route) {
+
+        composable(
+            route = Screen.AddOrEditScreen.route + "?id={id}",
+            arguments = listOf(
+                navArgument(
+                    name = "id"
+                ) {
+                    type = NavType.IntType
+                }
+            )) {
 
             val addOrEditScreenViewModel: AddOrEditScreenViewModel = hiltViewModel()
             val lifecycle = LocalLifecycleOwner.current.lifecycle

@@ -1,9 +1,6 @@
 package com.task.noteapp.data.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.task.noteapp.data.model.Note
 import kotlinx.coroutines.flow.Flow
 
@@ -13,7 +10,10 @@ interface NoteDao {
     @Query("SELECT * FROM notes")
     fun getAllNotes(): Flow<List<Note>>
 
-    @Insert
+    @Query("SELECT * FROM notes WHERE id = :id")
+    suspend fun getNoteById(id: Int): Note
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addNewNote(note: Note)
 
     @Delete

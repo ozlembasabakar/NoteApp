@@ -47,6 +47,12 @@ class NotesScreenViewModel @Inject constructor(
             notesAction.emit(NotesAction.OpenAddNewNoteScreen)
         }
     }
+
+    fun openNoteDetail(note: Note) {
+        viewModelScope.launch {
+            notesAction.emit(NotesAction.OpenNoteDetail(note.id))
+        }
+    }
 }
 
 data class NotesScreenViewState(
@@ -55,4 +61,5 @@ data class NotesScreenViewState(
 
 sealed class NotesAction {
     object OpenAddNewNoteScreen : NotesAction()
+    data class OpenNoteDetail(val id: Int) : NotesAction()
 }

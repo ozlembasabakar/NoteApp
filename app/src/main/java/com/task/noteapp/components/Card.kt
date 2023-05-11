@@ -29,6 +29,7 @@ import com.task.noteapp.theme.*
 fun Card(
     note: Note,
     onDeleteNoteClick: (Note) -> Unit,
+    onOpenNotesDetailClick: (Note) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -40,7 +41,12 @@ fun Card(
                 color = CardColumnBorderColor,
                 shape = Shapes.small
             )
-            .background(MaterialTheme.colorScheme.surface),
+            .background(MaterialTheme.colorScheme.surface)
+            .clickable(
+                onClick = {
+                    onOpenNotesDetailClick(note)
+                }
+            ),
         horizontalAlignment = Alignment.End
     ) {
         AsyncImage(
@@ -88,8 +94,13 @@ fun Card(
 fun NoteCard(
     note: Note,
     onDeleteNoteClick: (Note) -> Unit,
+    onOpenNotesDetailClick: (Note) -> Unit,
 ) {
-    Card(note = note, onDeleteNoteClick = onDeleteNoteClick)
+    Card(
+        note = note,
+        onDeleteNoteClick = onDeleteNoteClick,
+        onOpenNotesDetailClick = onOpenNotesDetailClick
+    )
 }
 
 @Preview(name = "LightMode")
@@ -103,7 +114,8 @@ fun PreviewCard() {
         )
         Card(
             note = note,
-            onDeleteNoteClick = {}
+            onDeleteNoteClick = {},
+            onOpenNotesDetailClick = {}
         )
     }
 }

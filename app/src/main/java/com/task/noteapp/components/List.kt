@@ -19,6 +19,7 @@ import com.task.noteapp.theme.*
 fun List(
     note: List<Note>,
     onDeleteNoteClick: (Note) -> Unit,
+    onOpenNotesDetailClick: (Note) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalStaggeredGrid(
@@ -32,6 +33,9 @@ fun List(
                     note = noteList,
                     onDeleteNoteClick = { note ->
                         onDeleteNoteClick(note)
+                    },
+                    onOpenNotesDetailClick = { note ->
+                        onOpenNotesDetailClick(note)
                     }
                 )
             }
@@ -44,10 +48,12 @@ fun List(
 fun NotesList(
     note: List<Note>,
     onDeleteNoteClick: (Note) -> Unit,
+    onOpenNotesDetailClick: (Note) -> Unit,
 ) {
     List(
         note = note,
-        onDeleteNoteClick = onDeleteNoteClick
+        onDeleteNoteClick = onDeleteNoteClick,
+        onOpenNotesDetailClick = onOpenNotesDetailClick
     )
 }
 
@@ -62,7 +68,8 @@ fun PreviewNotesList() {
 
         NotesList(
             note = model,
-            onDeleteNoteClick = {}
+            onDeleteNoteClick = {},
+            onOpenNotesDetailClick = {}
         )
     }
 }

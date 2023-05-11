@@ -24,6 +24,7 @@ fun NotesScreen(
     note: List<Note>,
     onAddNoteClick: () -> Unit,
     onDeleteNoteClick: (Note) -> Unit,
+    onOpenNotesDetailClick: (Note) -> Unit,
 ) {
     Scaffold(
         modifier = Modifier
@@ -41,7 +42,8 @@ fun NotesScreen(
         content = {
             NotesList(
                 note = note,
-                onDeleteNoteClick = onDeleteNoteClick
+                onDeleteNoteClick = onDeleteNoteClick,
+                onOpenNotesDetailClick = onOpenNotesDetailClick
             )
             Spacer(modifier = Modifier.height(ListVerticalItemSpacing))
         }
@@ -60,7 +62,8 @@ fun PreviewNotesScreen() {
         NotesScreen(
             note = model,
             onAddNoteClick = {},
-            onDeleteNoteClick = {}
+            onDeleteNoteClick = {},
+            onOpenNotesDetailClick = {}
         )
     }
 }

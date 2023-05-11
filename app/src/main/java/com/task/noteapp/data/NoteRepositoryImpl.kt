@@ -11,6 +11,10 @@ class NoteRepositoryImpl @Inject constructor(
         return localDatasource.getAllNotes()
     }
 
+    override suspend fun getNoteById(id: Int): Note {
+        return localDatasource.getNoteById(id)
+    }
+
     override suspend fun addNewNote(note: Note) {
         localDatasource.addNewNote(note)
     }
