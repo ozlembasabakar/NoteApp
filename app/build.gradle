@@ -41,7 +41,7 @@ android {
                     appIcon     : "@mipmap/app_icon",
                     appIconRound: "@mipmap/app_icon_round",
                     appName     : "@string/app_name",
-                    appTheme    : "@style/Theme.NoteApp"
+                    appTheme    : "@style/Theme.App.Starting"
             ]
         }
     }
@@ -91,4 +91,7 @@ dependencies {
 
     testImplementation libs.mockito.core
     testImplementation libs.kotlinx.coroutines.test
+
+    implementation libs.splashscreen
+
 }
