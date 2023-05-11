@@ -15,11 +15,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.task.noteapp.addoreditscreen.AddOrEditScreen
-import com.task.noteapp.addoreditscreen.AddOrEditScreenViewModel
-import com.task.noteapp.notesscreen.NotesAction
+import com.example.addoreditscreen.AddOrEditScreen
+import com.example.addoreditscreen.AddOrEditScreenViewModel
+import com.example.notesscreen.NotesAction
+import com.example.notesscreen.NotesScreenViewModel
 import com.task.noteapp.notesscreen.NotesScreen
-import com.task.noteapp.notesscreen.NotesScreenViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable

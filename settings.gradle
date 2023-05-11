@@ -19,3 +19,12 @@ dependencyResolutionManagement {
 }
 include ':app'
 rootProject.name = "NoteApp"
+include ':core'
+include ':core:database'
+include ':core:model'
+include ':core:data'
+include ':core:designsystem'
+include ':feature'
+include ':feature:notesscreen'
+include ':feature:addoreditscreen'
+include ':core:domain'

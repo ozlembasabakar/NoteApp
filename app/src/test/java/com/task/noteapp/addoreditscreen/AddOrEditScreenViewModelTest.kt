@@ -1,8 +1,10 @@
 package com.task.noteapp.addoreditscreen
 
 import androidx.lifecycle.SavedStateHandle
-import com.task.noteapp.data.NoteRepository
-import com.task.noteapp.data.model.Note
+import com.example.addoreditscreen.AddOrEditScreenViewModel
+import com.example.domain.AddNewNoteUseCase
+import com.example.domain.GetNoteByIdUseCase
+import com.example.model.model.Note
 import com.task.noteapp.notesscreen.MainDispatcherRule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,11 +21,12 @@ internal class AddOrEditScreenViewModelTest {
     val mainDispatcherRule = MainDispatcherRule()
 
     private val savedStateHandle: SavedStateHandle = Mockito.mock<SavedStateHandle>()
-    private val noteRepository: NoteRepository = Mockito.mock<NoteRepository>()
+    private val addNewNoteUseCase: AddNewNoteUseCase= Mockito.mock()
+    private val getNoteByIdUseCase: GetNoteByIdUseCase = Mockito.mock()
     private val note: Note = Mockito.mock<Note>()
 
     private fun addOrEditScreenViewModel(): AddOrEditScreenViewModel =
-        AddOrEditScreenViewModel(noteRepository, savedStateHandle)
+        AddOrEditScreenViewModel(addNewNoteUseCase, getNoteByIdUseCase, savedStateHandle)
 
     @Test
     fun `when opened the add new note screen, should add note`() = runTest {
@@ -31,7 +34,7 @@ internal class AddOrEditScreenViewModelTest {
         val note = note
 
         CoroutineScope(Dispatchers.Default).launch {
-            Mockito.verify(noteRepository).addNewNote(note)
+            Mockito.verify(addNewNoteUseCase)
         }
     }
 
@@ -41,7 +44,7 @@ internal class AddOrEditScreenViewModelTest {
         val note = note
 
         CoroutineScope(Dispatchers.Default).launch {
-            Mockito.verify(noteRepository).getNoteById(note.id)
+            Mockito.verify(getNoteByIdUseCase(note.id))
         }
     }
 }

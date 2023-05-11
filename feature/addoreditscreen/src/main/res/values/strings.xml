@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AddOrEditScreen</string>
+    <string name="title">Title</string>
+    <string name="imageUrl">Image Url</string>
+    <string name="note">Note</string>
+    <string name="edited">Edited</string>
+</resources>

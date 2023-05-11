@@ -3,7 +3,7 @@ package com.task.noteapp.addoreditscreen
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.task.noteapp.MainActivity
-import com.task.noteapp.data.model.Note
+import com.example.model.model.Note
 import org.junit.Before
 import org.junit.FixMethodOrder
 import org.junit.Rule
