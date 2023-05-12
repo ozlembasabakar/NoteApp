@@ -19,7 +19,7 @@ import com.example.addoreditscreen.AddOrEditScreen
 import com.example.addoreditscreen.AddOrEditScreenViewModel
 import com.example.notesscreen.NotesAction
 import com.example.notesscreen.NotesScreenViewModel
-import com.task.noteapp.notesscreen.NotesScreen
+import com.example.notesscreen.NotesScreen
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable

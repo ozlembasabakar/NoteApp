@@ -1,4 +1,4 @@
-package com.task.noteapp.notesscreen
+package com.example.notesscreen
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.components.NotesList
 import com.example.model.model.Note
+import com.example.components.Button
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -23,7 +24,7 @@ fun NotesScreen(
             .fillMaxSize(),
         containerColor = MaterialTheme.colorScheme.background,
         floatingActionButton = {
-            com.example.components.Button(
+            Button(
                 onClick = {
                     onAddNoteClick()
                 }

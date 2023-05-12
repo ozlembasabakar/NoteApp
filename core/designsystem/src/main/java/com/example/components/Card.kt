@@ -78,21 +78,32 @@ fun Card(
                 maxLines = CardDescriptionTextMaxLineCount
             )
         }
-        Icon(
-            painter = painterResource(id = AppIcons.TrashIcon),
-            contentDescription = Icons.Filled.Delete.name,
+        Row(
             modifier = Modifier
+                .fillMaxWidth()
                 .padding(CardIconPadding)
-                .clip(Shapes.small)
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = rememberRipple(bounded = true),
-                    onClick = {
-                        onDeleteNoteClick(note)
-                    }
-                )
-                .testTag("Delete")
-        )
+        ) {
+            Text(
+                text = note.date,
+                color = MaterialTheme.colorScheme.onPrimary,
+                style = MaterialTheme.typography.displaySmall,
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Icon(
+                painter = painterResource(id = AppIcons.TrashIcon),
+                contentDescription = Icons.Filled.Delete.name,
+                modifier = Modifier
+                    .clip(Shapes.small)
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = rememberRipple(bounded = true),
+                        onClick = {
+                            onDeleteNoteClick(note)
+                        }
+                    )
+                    .testTag("Delete")
+            )
+        }
     }
 }
 
