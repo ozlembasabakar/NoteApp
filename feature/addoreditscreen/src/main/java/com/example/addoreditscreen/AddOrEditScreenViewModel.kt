@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.AddNewNoteUseCase
 import com.example.domain.GetNoteByIdUseCase
 import com.example.model.model.Note
-import com.task.noteapp.data.model.AddOrEditModel
+import com.example.model.model.AddOrEditModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch

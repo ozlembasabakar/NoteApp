@@ -1,4 +1,4 @@
-package com.task.noteapp.data.model
+package com.example.model.model
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf

@@ -1,6 +1,5 @@
 package com.task.noteapp
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -18,8 +17,8 @@ import androidx.navigation.navArgument
 import com.example.addoreditscreen.AddOrEditScreen
 import com.example.addoreditscreen.AddOrEditScreenViewModel
 import com.example.notesscreen.NotesAction
-import com.example.notesscreen.NotesScreenViewModel
 import com.example.notesscreen.NotesScreen
+import com.example.notesscreen.NotesScreenViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -36,8 +35,6 @@ fun NoteAppNavHost() {
         startDestination = Screen.NotesScreen.route
     ) {
         composable(Screen.NotesScreen.route) {
-
-            Log.d("ozlem was here", notesScreenViewState.notes.toString())
 
             val lifecycle = LocalLifecycleOwner.current.lifecycle
 

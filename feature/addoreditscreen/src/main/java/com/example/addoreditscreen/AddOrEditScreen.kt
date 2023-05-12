@@ -29,7 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.icon.AppIcons
 import com.example.theme.*
-import com.task.noteapp.data.model.AddOrEditModel
+import com.example.model.model.AddOrEditModel
 
 @Composable
 fun AddOrEditScreen(
