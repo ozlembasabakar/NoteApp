@@ -35,7 +35,7 @@ In the application, ViewModel events can be shown to the UI using Channels or ot
 
 ViewModel events that cause a UI status update should be handled immediately.
 
-![Group 15](https://github.com/ozlembasabakar/NoteApp/assets/53402156/26434a81-7cff-43f9-886b-65b2eee72e19)
+![Group 17](https://github.com/ozlembasabakar/NoteApp/assets/53402156/d33b765e-738d-4e04-931c-1f956b868c6a)
 
 Below is an example of going back to the home screen from the add or change annotation screen in the app.
 ```
@@ -52,7 +52,7 @@ sealed class AddOrEditAction {
 ```
 ## Architecture
 
-![Group 16](https://github.com/ozlembasabakar/NoteApp/assets/53402156/72dbd9dc-444a-4007-9dbe-1e4f2d6554e6)
+![Group 18](https://github.com/ozlembasabakar/NoteApp/assets/53402156/1b241354-1d92-40ad-8c39-3025c05fb92c)
 
 ### Domain Layer
 The domain layer is an essential component of the Android architecture, which follows the principles of Clean Architecture or Domain-Driven Design (DDD). It represents the core business logic and rules of the application, independent of any specific framework or technology.
