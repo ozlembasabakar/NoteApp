@@ -137,7 +137,7 @@ Common decoupling techniques can be:
 <br></br>
 <table>
   <tr>
-   <td><strong>Module</strong>
+   <td><strong>Layer</strong>
    </td>
    <td><strong>What was its purpose?</strong>
    </td>
